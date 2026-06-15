@@ -2,27 +2,20 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Products</title>
+<title>Products - Aafiya Fashion Store</title>
 
-<link rel="stylesheet"
-href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 </head>
 
 <body>
 
-<body>
-
-  <body>
-
+<!-- Sidebar -->
 <div class="sidebar" id="sidebar">
 
 <div class="logo-area">
@@ -73,8 +66,10 @@ Logout
 
 </div>
 
+<!-- Main Content -->
 <div class="main-content">
 
+<!-- Topbar -->
 <header class="topbar">
 
 <button id="menuBtn">
@@ -83,73 +78,20 @@ Logout
 
 <div class="top-actions">
 
-<button onclick="toggleDarkMode()"
-class="dark-btn">
-
+<button onclick="toggleDarkMode()" class="dark-btn">
 <i class="fas fa-moon"></i>
-
 </button>
 
 </div>
 
 </header>
-  
-<div class="sidebar" id="sidebar">
 
-<div class="logo-area">
-<h2>
-<i class="fas fa-shirt"></i>
-Aafiya Fashion
-</h2>
-</div>
-
-<ul>
-
-<li>
-<a href="dashboard.html">
-<i class="fas fa-chart-line"></i>
-Dashboard
-</a>
-</li>
-
-<li class="active">
-<a href="products.html">
-<i class="fas fa-box"></i>
-Products
-</a>
-</li>
-
-<li>
-<a href="sales.html">
-<i class="fas fa-cart-shopping"></i>
-Sales
-</a>
-</li>
-
-<li>
-<a href="reports.html">
-<i class="fas fa-chart-pie"></i>
-Reports
-</a>
-</li>
-
-<li>
-<a href="#" onclick="logout()">
-<i class="fas fa-right-from-bracket"></i>
-Logout
-</a>
-</li>
-
-</ul>
-
-</div>
-
-<div class="main-content">
-
+<!-- Dashboard Area -->
 <div class="dashboard">
 
 <h1>Product Management</h1>
 
+<!-- Add Product -->
 <div class="panel">
 
 <h3>Add Product</h3>
@@ -192,6 +134,8 @@ placeholder="Stock">
 type="file"
 id="image">
 
+<br><br>
+
 <button
 type="submit"
 class="btn btn-primary">
@@ -206,7 +150,10 @@ Add Product
 
 <br>
 
+<!-- Product Table -->
 <div class="panel">
+
+<h3>Products List</h3>
 
 <input
 type="text"
@@ -220,7 +167,6 @@ placeholder="Search Product">
 <thead>
 
 <tr>
-
 <th>Image</th>
 <th>Name</th>
 <th>Category</th>
@@ -228,7 +174,6 @@ placeholder="Search Product">
 <th>Price</th>
 <th>Stock</th>
 <th>Actions</th>
-
 </tr>
 
 </thead>
@@ -245,9 +190,7 @@ placeholder="Search Product">
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="js/supabase.js"></script>
+<!-- Scripts -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -260,5 +203,4 @@ placeholder="Search Product">
 <script src="js/dashboard.js"></script>
 
 </body>
-
 </html>
