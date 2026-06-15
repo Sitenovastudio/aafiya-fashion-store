@@ -8,28 +8,41 @@ let grandTotal = 0;
 
 async function loadProducts(){
 
-const { data } =
+const { data, error } =
 await supabaseClient
 .from("products")
 .select("*");
 
-products = data;
+if(error){
+
+console.error(error);
+alert(error.message);
+return;
+
+}
+
+products = data || [];
 
 const select =
 document.getElementById("productSelect");
 
-data.forEach(product=>{
+select.innerHTML = `
+<option value="">
+Select Product
+</option>
+`;
+
+products.forEach(product => {
 
 select.innerHTML += `
-
 <option value="${product.id}">
-
-${product.name}
-(Stock:${product.stock})
-
+${product.name} (Stock: ${product.stock})
 </option>
-
 `;
+
+});
+
+console.log("Loaded Products:", products);
 
 });
 
