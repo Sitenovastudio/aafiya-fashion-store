@@ -41,12 +41,13 @@ table.innerHTML += `
 <tr>
 
 <td>
-
-<img
-src="${product.image_url}"
-width="60">
-
+${
+product.image_url
+? `<img src="${product.image_url}" width="60">`
+: "No Image"
+}
 </td>
+
 
 <td>${product.name}</td>
 
