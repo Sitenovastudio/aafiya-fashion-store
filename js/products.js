@@ -1,3 +1,5 @@
+let products = [];
+
 const form =
 document.getElementById("productForm");
 
@@ -7,24 +9,30 @@ document.getElementById("productTable");
 const searchInput =
 document.getElementById("searchInput");
 
+
 /* LOAD PRODUCTS */
 
-async function loadProducts() {
+async function loadProducts(){
 
-const { data,error } =
+const { data, error } =
 await supabaseClient
 .from("products")
 .select("*")
-.order("id",{ascending:false});
+.order("id", {
+ascending: false
+});
 
 if(error){
 
-console.log(error);
+console.error(error);
+alert(error.message);
 return;
 
 }
 
-renderProducts(data);
+products = data || [];
+
+renderProducts(products);
 
 }
 
@@ -183,10 +191,18 @@ if(!confirm(
 "Delete Product?"
 )) return;
 
+const { error } =
 await supabaseClient
 .from("products")
 .delete()
-.eq("id",id);
+.eq("id", id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
 
 loadProducts();
 
@@ -196,14 +212,20 @@ loadProducts();
 
 async function editProduct(id){
 
-const product =
-products.find(
-p => Number(p.id) === Number(id)
-);
+const {
+data: product,
+error
+} =
+await supabaseClient
+.from("products")
+.select("*")
+.eq("id", id)
+.single();
 
-if(!product){
+if(error){
 
-alert("Product Not Found");
+console.error(error);
+alert(error.message);
 return;
 
 }
@@ -256,7 +278,7 @@ product.stock
 
 if(newStock === null) return;
 
-const { error } =
+const { error: updateError } =
 await supabaseClient
 .from("products")
 .update({
@@ -271,10 +293,10 @@ stock: Number(newStock)
 })
 .eq("id", id);
 
-if(error){
+if(updateError){
 
-console.error(error);
-alert(error.message);
+console.error(updateError);
+alert(updateError.message);
 return;
 
 }
@@ -294,7 +316,7 @@ async()=>{
 const keyword=
 searchInput.value;
 
-const { data }=
+const { data, error } =
 await supabaseClient
 .from("products")
 .select("*")
@@ -303,8 +325,14 @@ await supabaseClient
 `%${keyword}%`
 );
 
-renderProducts(data);
+if(error){
 
+console.error(error);
+return;
+
+}
+
+renderProducts(data || []);
 }
 );
 
