@@ -165,8 +165,6 @@ console.error(error);
 
 loadDashboardStats();
 
-loadDashboardStats();
-
 
 /* ==========================
    GREETING
