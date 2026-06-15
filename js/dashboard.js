@@ -93,37 +93,77 @@ Later:
 Replace with Supabase API
 */
 
-function loadDashboardStats() {
+async function loadDashboardStats() {
 
-    const totalProducts =
-        localStorage.getItem("totalProducts") || 0;
+try {
 
-    const totalSales =
-        localStorage.getItem("totalSales") || 0;
+const { count: productCount } =
+await supabaseClient
+.from("products")
+.select("*", {
+count: "exact",
+head: true
+});
 
-    const totalRevenue =
-        localStorage.getItem("totalRevenue") || 0;
+const { count: salesCount } =
+await supabaseClient
+.from("sales")
+.select("*", {
+count: "exact",
+head: true
+});
 
-    const lowStock =
-        localStorage.getItem("lowStock") || 0;
+const { data: salesData } =
+await supabaseClient
+.from("sales")
+.select("total_amount");
 
-    document.getElementById(
-        "totalProducts"
-    ).innerText = totalProducts;
+const totalRevenue =
+salesData?.reduce(
+(sum, sale) =>
+sum + Number(sale.total_amount || 0),
+0
+) || 0;
 
-    document.getElementById(
-        "totalSales"
-    ).innerText = totalSales;
+const { count: lowStockCount } =
+await supabaseClient
+.from("products")
+.select("*", {
+count: "exact",
+head: true
+})
+.lt("stock", 5);
 
-    document.getElementById(
-        "totalRevenue"
-    ).innerText = "₹" + totalRevenue;
+document.getElementById(
+"totalProducts"
+).innerText =
+productCount || 0;
 
-    document.getElementById(
-        "lowStock"
-    ).innerText = lowStock;
+document.getElementById(
+"totalSales"
+).innerText =
+salesCount || 0;
+
+document.getElementById(
+"totalRevenue"
+).innerText =
+"₹" + totalRevenue;
+
+document.getElementById(
+"lowStock"
+).innerText =
+lowStockCount || 0;
 
 }
+catch(error){
+
+console.error(error);
+
+}
+
+}
+
+loadDashboardStats();
 
 loadDashboardStats();
 
