@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Reports Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<h1>Reports & Analytics</h1>
+
+<div class="cards">
+
+<div class="card">
+<h2 id="todaySales">₹0</h2>
+<p>Today's Sales</p>
+</div>
+
+<div class="card">
+<h2 id="monthSales">₹0</h2>
+<p>Monthly Sales</p>
+</div>
+
+<div class="card">
+<h2 id="totalOrders">0</h2>
+<p>Total Orders</p>
+</div>
+
+<div class="card">
+<h2 id="lowStockCount">0</h2>
+<p>Low Stock Products</p>
+</div>
+
+</div>
+
+<br>
+
+<div class="panel">
+<h3>Revenue Trend</h3>
+<canvas id="salesChart"></canvas>
+</div>
+
+<br>
+
+<div class="panel">
+
+<button class="btn btn-success"
+onclick="exportCSV()">
+Export Excel
+</button>
+
+<button class="btn btn-primary"
+onclick="window.print()">
+Export PDF
+</button>
+
+</div>
+
+<br>
+
+<div class="panel">
+
+<h3>Sales History</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Customer</th>
+<th>Total</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody id="salesTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/reports.js"></script>
+
+</body>
+
+</html>
