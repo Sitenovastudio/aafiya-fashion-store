@@ -4,22 +4,98 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Sales Billing - Aafiya Fashion Store</title>
 
-<title>Sales Billing</title>
+<link rel="stylesheet" href="css/style.css">
 
 <link rel="stylesheet"
-href="css/style.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
+<!-- Sidebar -->
+
+<div class="sidebar" id="sidebar">
+
+<div class="logo-area">
+<h2>
+<i class="fas fa-shirt"></i>
+Aafiya Fashion
+</h2>
+</div>
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fas fa-chart-line"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="products.html">
+<i class="fas fa-box"></i>
+Products
+</a>
+</li>
+
+<li class="active">
+<a href="sales.html">
+<i class="fas fa-cart-shopping"></i>
+Sales
+</a>
+</li>
+
+<li>
+<a href="reports.html">
+<i class="fas fa-chart-pie"></i>
+Reports
+</a>
+</li>
+
+<li>
+<a href="#" onclick="logout()">
+<i class="fas fa-right-from-bracket"></i>
+Logout
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main Content -->
+
+<div class="main-content">
+
+<!-- Topbar -->
+
+<header class="topbar">
+
+<button id="menuBtn">
+<i class="fas fa-bars"></i>
+</button>
+
+<div class="top-actions">
+
+<button onclick="toggleDarkMode()" class="dark-btn">
+<i class="fas fa-moon"></i>
+</button>
+
+</div>
+
+</header>
+
 <div class="dashboard">
 
 <h1>Customer Billing</h1>
+
+<!-- Customer Details -->
 
 <div class="panel">
 
@@ -30,10 +106,14 @@ type="text"
 id="customerName"
 placeholder="Customer Name">
 
+<br><br>
+
 <input
 type="text"
 id="customerPhone"
 placeholder="Phone Number">
+
+<br><br>
 
 <input
 type="text"
@@ -43,6 +123,8 @@ placeholder="Address">
 </div>
 
 <br>
+
+<!-- Product Selection -->
 
 <div class="panel">
 
@@ -56,11 +138,15 @@ Select Product
 
 </select>
 
+<br><br>
+
 <input
 type="number"
 id="qty"
 placeholder="Quantity"
 value="1">
+
+<br><br>
 
 <button
 onclick="addToCart()"
@@ -74,6 +160,8 @@ Add To Cart
 
 <br>
 
+<!-- Cart -->
+
 <div class="panel">
 
 <h3>Cart</h3>
@@ -83,12 +171,10 @@ Add To Cart
 <thead>
 
 <tr>
-
 <th>Product</th>
 <th>Qty</th>
 <th>Price</th>
 <th>Total</th>
-
 </tr>
 
 </thead>
@@ -99,11 +185,13 @@ Add To Cart
 
 </table>
 
+<br>
+
 <h2 id="grandTotal">
-
 ₹0
-
 </h2>
+
+<br>
 
 <button
 onclick="completeSale()"
@@ -112,16 +200,22 @@ class="btn btn-success">
 Generate Invoice
 
 </button>
-  <button
+
+<button
 onclick="shareWhatsApp()"
 class="btn btn-primary">
 
 WhatsApp Invoice
 
 </button>
+
 </div>
 
 </div>
+
+</div>
+
+<!-- Scripts -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -129,6 +223,9 @@ WhatsApp Invoice
 
 <script src="js/sales.js"></script>
 
+<script src="js/auth.js"></script>
+
+<script src="js/dashboard.js"></script>
 
 </body>
 
