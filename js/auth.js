@@ -54,7 +54,7 @@ function checkAuth() {
         !window.location.pathname.includes("index.html")
     ) {
 
-        window.location.href = "dashboard.html";
+        window.location.href = "./dashboard.html";
 
     }
 
