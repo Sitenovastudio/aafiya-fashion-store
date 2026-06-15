@@ -134,3 +134,183 @@ document.getElementById(
 "₹"+grandTotal;
 
 }
+async function completeSale(){
+
+if(cart.length===0){
+
+alert("Cart Empty");
+
+return;
+
+}
+
+const customerName =
+document.getElementById(
+"customerName"
+).value;
+
+const customerPhone =
+document.getElementById(
+"customerPhone"
+).value;
+
+const customerAddress =
+document.getElementById(
+"customerAddress"
+).value;
+
+let customerId;
+
+/* CUSTOMER */
+
+const {
+data:customer
+} =
+await supabaseClient
+.from("customers")
+.insert([{
+
+name:customerName,
+phone:customerPhone,
+address:customerAddress
+
+}])
+.select()
+.single();
+
+customerId =
+customer.id;
+
+/* SALE */
+
+const {
+data:sale
+} =
+await supabaseClient
+.from("sales")
+.insert([{
+
+customer_id:customerId,
+total_amount:grandTotal
+
+}])
+.select()
+.single();
+
+/* ITEMS */
+
+for(const item of cart){
+
+await supabaseClient
+.from("sale_items")
+.insert([{
+
+sale_id:sale.id,
+product_id:item.productId,
+quantity:item.qty,
+price:item.price,
+subtotal:item.total
+
+}]);
+
+/* STOCK DEDUCT */
+
+const product =
+products.find(
+p=>p.id===item.productId
+);
+
+await supabaseClient
+.from("products")
+.update({
+
+stock:
+product.stock - item.qty
+
+})
+.eq(
+"id",
+item.productId
+);
+
+}
+
+/* PRINT */
+
+printInvoice(
+sale.id,
+customerName,
+customerPhone
+);
+
+}
+function printInvoice(
+invoiceNo,
+customerName,
+phone
+){
+
+const invoice = `
+
+<h2>
+Aafiya Fashion Store
+</h2>
+
+<hr>
+
+<p>
+Invoice #${invoiceNo}
+</p>
+
+<p>
+Customer:
+${customerName}
+</p>
+
+<p>
+Phone:
+${phone}
+</p>
+
+<p>
+Total:
+₹${grandTotal}
+</p>
+
+`;
+
+const win =
+window.open(
+"",
+"",
+"width=600,height=700"
+);
+
+win.document.write(
+invoice
+);
+
+win.print();
+
+}
+
+function shareWhatsApp(){
+
+const customerPhone =
+document.getElementById(
+"customerPhone"
+).value;
+
+const msg =
+
+`Thank you for shopping at Aafiya Fashion Store.
+Your bill amount is ₹${grandTotal}`;
+
+window.open(
+
+`https://wa.me/91${customerPhone}?text=${encodeURIComponent(msg)}`
+
+);
+
+}
+
