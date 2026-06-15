@@ -1,6 +1,10 @@
 /* ==========================
    LOGIN SYSTEM
 ========================== */
+if(error){
+   console.error(error);
+}
+
 
 const loginForm = document.getElementById("loginForm");
 
