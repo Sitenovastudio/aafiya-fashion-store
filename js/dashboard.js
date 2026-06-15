@@ -127,46 +127,6 @@ function loadDashboardStats() {
 
 loadDashboardStats();
 
-/* ==========================
-   SAMPLE DATA
-========================== */
-
-/*
-First Run Demo Data
-*/
-
-if (
-    !localStorage.getItem("demoLoaded")
-) {
-
-    localStorage.setItem(
-        "totalProducts",
-        "120"
-    );
-
-    localStorage.setItem(
-        "totalSales",
-        "45"
-    );
-
-    localStorage.setItem(
-        "totalRevenue",
-        "78500"
-    );
-
-    localStorage.setItem(
-        "lowStock",
-        "7"
-    );
-
-    localStorage.setItem(
-        "demoLoaded",
-        "true"
-    );
-
-    location.reload();
-
-}
 
 /* ==========================
    GREETING
