@@ -4,17 +4,95 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Reports Dashboard</title>
 
 <link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
 <body>
+
+<!-- Sidebar -->
+
+<div class="sidebar" id="sidebar">
+
+<div class="logo-area">
+<h2>
+<i class="fas fa-shirt"></i>
+Aafiya Fashion
+</h2>
+</div>
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fas fa-chart-line"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="products.html">
+<i class="fas fa-box"></i>
+Products
+</a>
+</li>
+
+<li>
+<a href="sales.html">
+<i class="fas fa-cart-shopping"></i>
+Sales
+</a>
+</li>
+
+<li class="active">
+<a href="reports.html">
+<i class="fas fa-chart-pie"></i>
+Reports
+</a>
+</li>
+
+<li>
+<a href="#" onclick="logout()">
+<i class="fas fa-right-from-bracket"></i>
+Logout
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main Content -->
+
+<div class="main-content">
+
+<header class="topbar">
+
+<button id="menuBtn">
+<i class="fas fa-bars"></i>
+</button>
+
+<div class="top-actions">
+
+<button onclick="toggleDarkMode()"
+class="dark-btn">
+
+<i class="fas fa-moon"></i>
+
+</button>
+
+</div>
+
+</header>
 
 <div class="dashboard">
 
@@ -47,22 +125,31 @@
 <br>
 
 <div class="panel">
+
 <h3>Revenue Trend</h3>
+
 <canvas id="salesChart"></canvas>
+
 </div>
 
 <br>
 
 <div class="panel">
 
-<button class="btn btn-success"
+<button
+class="btn btn-success"
 onclick="exportCSV()">
+
 Export Excel
+
 </button>
 
-<button class="btn btn-primary"
+<button
+class="btn btn-primary"
 onclick="window.print()">
+
 Export PDF
+
 </button>
 
 </div>
@@ -76,12 +163,14 @@ Export PDF
 <table>
 
 <thead>
+
 <tr>
 <th>ID</th>
 <th>Customer</th>
 <th>Total</th>
 <th>Date</th>
 </tr>
+
 </thead>
 
 <tbody id="salesTable">
@@ -94,10 +183,19 @@ Export PDF
 
 </div>
 
+</div>
+
+<!-- Scripts -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="js/supabase.js"></script>
+
 <script src="js/reports.js"></script>
 
-</body>
+<script src="js/auth.js"></script>
 
+<script src="js/dashboard.js"></script>
+
+</body>
 </html>
