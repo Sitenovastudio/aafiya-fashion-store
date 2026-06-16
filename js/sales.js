@@ -208,8 +208,10 @@ return;
 
 let customerId;
 
-
-   async function loadCustomerHistory(){
+/* ==========================
+   Customer History
+========================== */
+  async function loadCustomerHistory(){
 
 const phone =
 document.getElementById(
@@ -257,13 +259,52 @@ document.getElementById(
 
 table.innerHTML = "";
 
-sales.forEach(sale => {
+if(!sales || sales.length === 0){
+
+table.innerHTML = `
+<tr>
+<td colspan="5">
+No Purchase History
+</td>
+</tr>
+`;
+
+return;
+
+}
+
+for(const sale of sales){
+
+const {
+data: items
+} =
+await supabaseClient
+.from("sale_items")
+.select(`
+quantity,
+products(name)
+`)
+.eq("sale_id", sale.id);
+
+let productList = "";
+
+items.forEach(item => {
+
+productList +=
+`${item.products.name}
+(x${item.quantity})<br>`;
+
+});
 
 table.innerHTML += `
 
 <tr>
 
 <td>#${sale.id}</td>
+
+<td>${customer.name}</td>
+
+<td>${productList}</td>
 
 <td>
 ${new Date(
@@ -279,8 +320,9 @@ sale.created_at
 
 `;
 
-});
+}
 
+}
 }
    
 /* CHECK CUSTOMER */
